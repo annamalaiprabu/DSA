@@ -111,6 +111,7 @@ void learnVector(){
     vec1.clear(); //erases the entire vector and leaves us with an empty vector
     /*cout << vec1.empty() << '\n'; //if vector is empty, gives us 1
     cout << vec2.empty() << '\n'; // if vector is not empty, gives us 0*/ 
+    //we sort using sort(vec1.begin(),vec1.end())
 }
 void learnList(){
     list <int> l1={3,5}; // l1={3,5} In vector we use a SLL, in list we use a DLL, so they both are very similar except that here in list we can also perform front operations
