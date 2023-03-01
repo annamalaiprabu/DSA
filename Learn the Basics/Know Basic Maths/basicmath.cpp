@@ -53,11 +53,15 @@ void checkPalindrome(){
 	}
 }
 void checkArmstrong(){
-    int n{371};
-    int ndupe{n},lastDigit{},checkSum{0};
+    int n{8208};
+    int ndupe{n},ndupe2{n},lastDigit{},checkSum{0},numOfDigits{0};
+    while(ndupe2!=0){
+        ndupe2 = ndupe2/10;
+        numOfDigits++;
+    }
     while(n!=0){
         lastDigit = n % 10;
-        checkSum += pow(lastDigit,3);
+        checkSum += pow(lastDigit,numOfDigits);
         n = n/10;
     }
     if(checkSum == ndupe)
@@ -88,13 +92,29 @@ void printAllDivisors(){
         cout << x << " ";
     }
 }
+void checkIfPrime(){
+    int n{2},flag{0};
+    for(int i=2;i*i<=n;i++){
+        if(n % i ==0){ //no need to check for n/i as if i is not a factor of n then obviously n/i also won't be a factor of n
+            flag=1;
+            break;
+        }
+    }
+    if(flag==1 || n==1){
+        cout << "Not a Prime\n";
+    }
+    else{
+        cout << "Yes, it is a Prime\n";
+    }
+    }
 int main(){
     // digitConcept();
     // numberOfDigits();
     // reverseNumber();
     // checkPalindrome();
     // checkArmstrong();
-    printAllDivisors();
-
+    // printAllDivisors();
+    // checkIfPrime();
+    findGcdOrHcf();
     return 0;
 }
