@@ -79,7 +79,7 @@ void printAllDivisors(){
     // gigachad method
     int n{36};
     vector <int> v1;
-    for(int i=1;i*i<=n;i++){ //in the condition part of the n we use i*i<n as sqrt(n) is a mathematical function and everytime(for every iteration) it is called it will take time itself
+    for(int i=1;i*i<=n;i++){ //in the condition part of the n we use i*i<=n as i<=sqrt(n) is a mathematical function and everytime(for every iteration) it is called it will take time itself
         if(n % i == 0 ){
             v1.emplace_back(i);
             if(i != n/i){
@@ -107,6 +107,66 @@ void checkIfPrime(){
         cout << "Yes, it is a Prime\n";
     }
     }
+void findGcdOrHcf(){
+    int num1{40},num2{20},gcd{1};
+    // approach 1
+    for(int i = 2;i<=min(num1,num2);i++){ // as the hcf can't be greater than the least no. out of the two so we take the least out of the two
+        if(num1 % i == 0 && num2 % i ==0){
+            gcd = i;
+        }
+    }
+    cout << "The HCF is " << gcd << '\n';
+    
+    // approach 2
+    // here we begin from the end, starting from whether the gcd is the least number itself
+    // both the approaches have the same TC of O(min(num1,num2)) as we always take the first
+    // but I personally liked the second approach more out of the two as for except both the numbers are prime case like 11 and 13, the 2nd approach loops a lot less than the first one
+    gcd = 1;
+    for(int i = min(num1,num2);i>=2;i--){
+        if(num1 % i ==0 && num2 % i ==0){
+            gcd = i;
+            break;
+        }
+    }
+    cout << "The HCF is " << gcd << '\n';
+    
+    // but both these approaches take a lot of time so we can use the euclidean algorithm which is gcd(a,b) = gcd(a-b,b)
+    // the program ends when either of the 2 numbers is 0, then the other number is the gcd
+
+    // while(num1 > 0 && num2 > 0){
+    //     if(num1 > num2){
+    //         num1 = num1 - num2;
+    //     }
+    //     else{
+    //         num2 = num2 - num1;
+    //     }
+    // }
+    // if(num1 == 0){
+    //     cout << "The HCF is " << num2 << '\n';
+    // }
+    // else{
+    //     cout << "The HCF is " << num1 << '\n';
+    // }
+    
+    // but after doing a dry run for the euclidean algorithm we found out a way to reduce the number of iterations , by making the observation that gcd(a,b) = gcd(a % b,b), where a was greater than b
+    // so lets code the better euclidean algorithm now also comment out the previous way before running this and vice-versa as the num1 and num2 values have been changed from their original 
+    
+    while(num1 > 0 && num2 > 0){
+        if(num1 > num2){
+            num1 = num1 % num2;
+        }
+        else{
+            num2 = num2 % num1;
+        }
+    }
+    if(num1==0){
+        cout << "The HCF is " << num2 << '\n';
+    }  
+    else{
+        cout << "The HCF is " << num1 << '\n';
+    }
+}
+
 int main(){
     // digitConcept();
     // numberOfDigits();
