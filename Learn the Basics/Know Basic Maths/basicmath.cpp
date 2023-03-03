@@ -165,6 +165,7 @@ void findGcdOrHcf(){
     else{
         cout << "The HCF is " << num1 << '\n';
     }
+    //also to find the LCM the best method would be to used the property HCF * LCM = pdt. of 2 no.s
 }
 
 int main(){
