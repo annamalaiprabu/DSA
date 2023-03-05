@@ -48,6 +48,19 @@ void printLinearlyNto1thruBacktracking(int i,int n){
     cout << i << ' ';
 }
 
+// void sumOfFirstNterms(int n){ //we can also use the direct formula (n* (n+1))/2 but lets not do that as we are learning recursion here
+//     if(n==1)
+//         cout << 
+//         return;
+// }
+void parameterizedWayforSumof1toN(int sum,int n){ //here we play around with the parameters more than the functions
+    if(n==0){ //when there are 2 or more lines in the if statement don't forget curly braces
+        cout << sum << '\n';
+        return;
+    }
+    parameterizedWayforSumof1toN(sum+n,n-1); //this order of parameters doesn't matter as long as you understand their working properly
+}
+
 int main(){
     // printNameNtimes(6);
     // printNameNtimesWay2(1,6);
@@ -55,9 +68,8 @@ int main(){
     // printLinearlyNto1(6);
     // printLinearlyNto1Way2(6,6);
     // printLinearly1toNthruBacktracking(6,6);
-    printLinearlyNto1thruBacktracking(1,6);
+    // printLinearlyNto1thruBacktracking(1,6);
+    parameterizedRecursionWayforSumof1toN(0,3);
 
-
-    
     return 0;
 }
