@@ -60,7 +60,41 @@ void parameterizedWayforSumof1toN(int sum,int n){ //here we play around with the
     }
     parameterizedWayforSumof1toN(sum+n,n-1); //this order of parameters doesn't matter as long as you understand their working properly
 }
-
+int functionalWayforSumof1toN(int n){
+    if (n==1){ //or a more mundane way would be if (num == 0) return 0 am skipping this step in the function to save a recursive call
+        return 1;
+    }
+    return n + functionalWayforSumof1toN(n-1);
+}
+int factorial(int n){
+    if(n==1){ //here we can't use n==0 as in case of multiplications never return 0 or even if (n==0) case you keep, then return 1 instead of 0
+        return 1;
+    }
+    return n * factorial(n-1);
+    //here TC = O(n) and SC also = O(n)
+}
+void revArrayUsingForLoop(){
+    int n= 5;
+    int a[n] = {1,2,3,4,2};
+    int start = 0;
+    int end = n-1;
+    while(start < end){
+        swap(a[start],a[end]); //can use temp variable to swap as it might be more efficient than calling a swap function, but am just coding it here for your understanding of how it works
+        start++;
+        end--;
+    }
+    for(int i = 0; i < n ; i++){
+        cout << a[i] << '\t';
+    }
+}
+void revArrayUsingRecursionWay1(int a[],int start,int end){
+    if(start >= end){ //even > is important here as in the case of even sizes they skip the pointers equal case and directly cross over each other
+        return a[];
+    }
+    swap(a[start],a[end]);
+    revArrayUsingRecursionWay1(a[],start+1,end-1);
+    
+}
 int main(){
     // printNameNtimes(6);
     // printNameNtimesWay2(1,6);
@@ -69,7 +103,11 @@ int main(){
     // printLinearlyNto1Way2(6,6);
     // printLinearly1toNthruBacktracking(6,6);
     // printLinearlyNto1thruBacktracking(1,6);
-    parameterizedRecursionWayforSumof1toN(0,3);
+    // parameterizedRecursionWayforSumof1toN(0,3);
+    // cout << functionalWayforSumof1toN(3) << '\n';
+    // cout << factorial(5) << '\n';
+    revArrayUsingForLoop();
+
 
     return 0;
 }
