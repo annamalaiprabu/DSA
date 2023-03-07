@@ -78,8 +78,8 @@ void printAllDivisors(){
     // }
     // gigachad method
     int n{36};
-    vector <int> v1;
-    for(int i=1;i*i<=n;i++){ //in the condition part of the n we use i*i<=n as i<=sqrt(n) is a mathematical function and everytime(for every iteration) it is called it will take time itself
+    vector <int> v1; //i*i<=n we get from squaring on both sides of i <=sqrt(n)
+    for(int i=1;i*i<=n;i++){ //in the condition part of the n we use i*i<=n instead of i<=sqrt(n)  as sqrt(n) is a mathematical function and everytime(for every iteration) it is called it will take time itself
         if(n % i == 0 ){
             v1.emplace_back(i);
             if(i != n/i){

@@ -47,12 +47,6 @@ void printLinearlyNto1thruBacktracking(int i,int n){
     printLinearlyNto1thruBacktracking(i+1,n);
     cout << i << ' ';
 }
-
-// void sumOfFirstNterms(int n){ //we can also use the direct formula (n* (n+1))/2 but lets not do that as we are learning recursion here
-//     if(n==1)
-//         cout << 
-//         return;
-// }
 void parameterizedWayforSumof1toN(int sum,int n){ //here we play around with the parameters more than the functions
     if(n==0){ //when there are 2 or more lines in the if statement don't forget curly braces
         cout << sum << '\n';
@@ -89,11 +83,31 @@ void revArrayUsingForLoop(){
 }
 void revArrayUsingRecursionWay1(int a[],int start,int end){
     if(start >= end){ //even > is important here as in the case of even sizes they skip the pointers equal case and directly cross over each other
-        return a[];
+        return; //as we can't return an array directly from a function and also we have performed the necessary swaps to the array before reaching the base case, so no probs we can print the array in the main fn to verify   
     }
     swap(a[start],a[end]);
-    revArrayUsingRecursionWay1(a[],start+1,end-1);
-    
+    revArrayUsingRecursionWay1(a,start+1,end-1);
+    //here we are using 2 pointers in the next approach I will show how this is possible using one pointer only
+}
+void revArrayUsingRecursionWay2(int a[],int i,int size){ //at the beginning of the main fn we will take i to be 0
+    // here we are using only one pointer to swap, more efficient than the previous one
+    if(i >= size/2){ //this condition is even for both odd and even don't overthink it, you can optimize more for odd and even cases individually but for now a single forula if(i>=n/2) will do
+        return;
+    }
+    swap(a[i],a[size-i-1]); //the formula for the second swap arraySize - i - 1
+    revArrayUsingRecursionWay2(a,i + 1, size); //for the recursion call in an array, the argument for an array is only the name of the array passed during the first function call, only there in the first function definition, we need to pass the array with [] like this int arr[]
+}
+                                              //also the size also need not be reduced it can be size only in all recursion calls, only thing we need to change is the the pointer we use here i or start which is 0 at the beginning, nothing else in the revursive fn calls 
+bool checkIfPalindrome(string s,int i,int n){
+    if(i>=n/2){
+        return true;
+    }
+    if(s[i]!=s[n-i-1]){
+        return false;
+    }
+    return checkIfPalindrome(s,i+1,n); //this is actually the else condition and as it is a bool function we need to return at the end so I am returning the whole next recursive calls only
+                                       //finally this is the line which gives the verdict
+    //if sometimes recursion is taking too long in gfg try an iterative approach and vice-versa
 }
 int main(){
     // printNameNtimes(6);
@@ -106,8 +120,20 @@ int main(){
     // parameterizedRecursionWayforSumof1toN(0,3);
     // cout << functionalWayforSumof1toN(3) << '\n';
     // cout << factorial(5) << '\n';
-    revArrayUsingForLoop();
-
+    // revArrayUsingForLoop();
+    // int arr[] = {1,2,3,4,5};
+    // int n = sizeof(arr)/sizeof(arr[0]);
+    // revArrayUsingRecursionWay1(arr,0,n-1); //here the arguments passed to the fn apart from the array must be 0 to n-1(not n) as per the indexing, we can use it to also reverse only specific parts of the array
+    // for(int i=0;i<n;i++){
+    //     cout << arr[i] << '\t';
+    // }
+    // revArrayUsingRecursionWay2(arr,0,n); //pls make a note in one pointer approach we give n as the parameter and not n-1 like the 2 pointer approach for reversing an array
+    // for(int i=0;i<n;i++){ 
+    //     cout << arr[i] << '\t';
+    // }
+    string s = "madam";
+    int n = s.size(); //performing string operation of size on string s to get the size
+    cout << checkIfPalindrome(s,0,n) << '\n';
 
     return 0;
 }
