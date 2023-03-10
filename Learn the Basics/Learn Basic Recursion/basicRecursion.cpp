@@ -107,7 +107,7 @@ bool checkIfPalindrome(string s,int i,int n){
     }
     return checkIfPalindrome(s,i+1,n); //this is actually the else condition and as it is a bool function we need to return at the end so I am returning the whole next recursive calls only
                                        //finally this is the line which gives the verdict
-    //if sometimes recursion is taking too long in gfg try an iterative approach and vice-versa
+    //if sometimes recursion is taking too long in gfg practice try an iterative approach and vice-versa
 }
 int main(){
     // printNameNtimes(6);
